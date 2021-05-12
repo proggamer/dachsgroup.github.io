@@ -1,0 +1,93 @@
+.card-menu {
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+  margin-bottom: 25px;
+}
+
+.card-menu > div {
+  width: 270px;
+  margin: 12px;
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.card-menu > div:nth-child(1) {
+  background-color: #e9fffd;
+}
+.card-menu > div:nth-child(2) {
+  background-color: #fff6cf;
+}
+.card-menu > div:nth-child(3) {
+  background-color: #fff3f2;
+}
+.card-menu > div:nth-child(4) {
+  background-color: #f0f3ff;
+}
+
+.card-menu h4 {
+  text-align: center;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-menu a {
+  text-decoration: none;
+  color: #666;
+}
+
+.card-menu li {
+  margin-bottom: 5px;
+}
+
+#dachsdesign {
+  border-right: 4px solid grey;
+  margin-top: 0;
+  margin-left: 0;
+}
+
+.printing-content {
+  display: flex;
+  width: 1080px;
+  align-items: center;
+  border-radius: 10px;
+  /* background-color: #e9fffd; */
+  overflow: visible;
+  margin: 10px;
+}
+.printing-content img {
+  width: 337px;
+  height: 500px;
+  box-shadow: -12px 3px 20px -5px grey;
+}
+.printing-content.reverse {
+  flex-direction: row-reverse;
+}
+
+.printing-content.reverse img {
+  box-shadow: 12px 3px 20px -5px grey;
+}
+
+.printing-content > div {
+  box-shadow: -3px 1px 10px -6px #2228;
+  margin: 40px -5px 40px 40px;
+  padding: 20px;
+  /* background: #e9fffd; */
+}
+
+.printing-content.reverse > div {
+  box-shadow: 3px 1px 10px -6px #2228;
+  margin: 40px 40px 40px -5px;
+}
+
+.printing-content .content {
+  padding: 20px;
+}
+
+#stationery {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

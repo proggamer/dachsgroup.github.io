@@ -1,0 +1,16 @@
+.info {
+  display: flex;
+}
+.info h2 {
+  margin: 10px;
+}
+.info > div {
+  flex: 1;
+}
+.info > div > div {
+  padding: 20px;
+}
+
+.info > div:first-child > div {
+  border-right: 4px solid #ddd;
+}

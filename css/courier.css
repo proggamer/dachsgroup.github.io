@@ -1,0 +1,35 @@
+.companies {
+  margin-top: 240px;
+}
+.company {
+  box-shadow: 0px 3px 7px -1px #2224;
+  border: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  margin: auto;
+  margin-top: 200px;
+  max-width: 1000px;
+}
+.company img {
+  width: 400px;
+  height: 300px;
+  align-self: center;
+  margin-top: -150px;
+  box-shadow: 0 12px 25px -10px #2228;
+  margin-bottom: 20px;
+}
+
+.company h2 {
+  margin: 10px;
+  text-align: center;
+}
+
+.company .info {
+  display: flex;
+}
+
+.company .info > div {
+  flex: 1;
+  padding: 10px;
+}
