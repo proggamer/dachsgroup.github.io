@@ -14,3 +14,53 @@
 .info > div:first-child > div {
   border-right: 4px solid #ddd;
 }
+
+#slider .imgs {
+  display: flex;
+  justify-content: center;
+  overflow: auto;
+  width: 100%;
+  margin: auto;
+  padding: 10px;
+  scrollbar-width: thin;
+}
+
+#slider .image-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+#slider .image-wrapper img {
+  max-height: 650px;
+  max-width: 950px;
+  height: 650px;
+  width: 950px;
+  object-fit: contain;
+}
+
+#slider .imgs::-webkit-scrollbar {
+  height: 10px;
+}
+
+#slider .imgs::-webkit-scrollbar-thumb {
+  background-color: #4444;
+  border-radius: 5px;
+}
+
+#slider .imgs img {
+  height: 100px;
+  width: 150px;
+  min-width: 150px;
+  margin: 10px;
+}
+
+#slider .imgs img:hover {
+  box-shadow: 0px 10px 20px -9px #2228;
+  border: 2px solid #00aacc;
+  transform: translateY(-10px);
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+
+#slider {
+  margin-top: 100px;
+}

@@ -12,7 +12,7 @@ function autocompleteCountries(inp, arr) {
         /*create a DIV element that will contain the items (values):*/
         a = document.createElement("DIV");
         a.setAttribute("id", this.id + "autocomplete-list");
-        a.setAttribute("class", "autocomplete-items");
+        a.setAttribute("class", "autocomplete-items form-control");
         /*append the DIV element as a child of the autocomplete container:*/
         this.parentNode.appendChild(a);
 
@@ -33,15 +33,15 @@ function autocompleteCountries(inp, arr) {
                     /*insert the value for the autocomplete text field:*/
                     inp.value = this.getElementsByTagName("input")[0].value;
                     document.getElementById("cities").value = '';
-                    console.log("1"+inp.value)
+                    console.log("1" + inp.value)
                     const urlCountryCode = 'http://localhost:5000/countries/' + inp.value;
                     $.ajax({
                         url: urlCountryCode,
                         type: "GET",
                         success: function (result) {
-                           // return result;
-                           var iso2code = result;
-                            console.log("2"+result);
+                            // return result;
+                            var iso2code = result;
+                            console.log("2" + result);
                             document.getElementById("myInput").name = result;
                             const urlCities = 'http://localhost:5000/cities/' + result;
                             $.ajax({
