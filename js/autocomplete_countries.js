@@ -34,7 +34,7 @@ function autocompleteCountries(inp, arr) {
                     inp.value = this.getElementsByTagName("input")[0].value;
                     document.getElementById("cities").value = '';
                     console.log("1" + inp.value)
-                    const urlCountryCode = 'http://localhost:5000/countries/' + inp.value;
+                    const urlCountryCode = 'https://countryapidach.herokuapp.com/countries/' + inp.value;
                     $.ajax({
                         url: urlCountryCode,
                         type: "GET",
@@ -43,7 +43,7 @@ function autocompleteCountries(inp, arr) {
                             var iso2code = result;
                             console.log("2" + result);
                             document.getElementById("myInput").name = result;
-                            const urlCities = 'http://localhost:5000/citiesN/' + inp.value;
+                            const urlCities = 'https://countryapidach.herokuapp.com/citiesN/' + inp.value;
                             $.ajax({
                                 url: urlCities,
                                 type: "GET",

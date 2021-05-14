@@ -871,7 +871,7 @@
 		var iso2code = '';
 		$(document).ready(function () {
 
-			const urlCountries = 'http://localhost:5000/countries';
+			const urlCountries = 'https://countryapidach.herokuapp.com/countries';
 			$.ajax({
 				url: urlCountries,
 				type: "GET",
@@ -884,7 +884,7 @@
 				}
 			})
 
-			const urlCityForAu = 'http://localhost:5000/citiesN/Australia';
+			const urlCityForAu = 'https://countryapidach.herokuapp.com/citiesN/Australia';
 			$.ajax({
 				url: urlCityForAu,
 				type: "GET",
@@ -1002,7 +1002,7 @@
 			spinner.removeAttribute('hidden');
 
 			var iso2code = '';
-			var api_url2 = 'http://localhost:5000/countries/' + document.getElementById('myInput').value;
+			var api_url2 = 'https://countryapidach.herokuapp.com/countries/' + document.getElementById('myInput').value;
 			console.log('URL' + api_url2);
 			async function getIsoCode() {
 				const response = await fetch(api_url2);
