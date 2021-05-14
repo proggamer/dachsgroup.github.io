@@ -1,4 +1,4 @@
-function autocompleteCountries(inp, arr) {
+function autocompleteCities2(inp, arr) {
     /*the autocomplete function takes two arguments,
     the text field element and an array of possible autocompleted values:*/
     var currentFocus;
@@ -12,10 +12,9 @@ function autocompleteCountries(inp, arr) {
         /*create a DIV element that will contain the items (values):*/
         a = document.createElement("DIV");
         a.setAttribute("id", this.id + "autocomplete-list");
-        a.setAttribute("class", "autocomplete-items form-control");
+        a.setAttribute("class", "autocomplete-items-cities form-control");
         /*append the DIV element as a child of the autocomplete container:*/
         this.parentNode.appendChild(a);
-
         /*for each item in the array...*/
         for (i = 0; i < arr.length; i++) {
             /*check if the item starts with the same letters as the text field value:*/
@@ -32,34 +31,8 @@ function autocompleteCountries(inp, arr) {
                 b.addEventListener("click", function (e) {
                     /*insert the value for the autocomplete text field:*/
                     inp.value = this.getElementsByTagName("input")[0].value;
-                    document.getElementById("cities").value = '';
-                    console.log("1" + inp.value)
-                    const urlCountryCode = 'http://localhost:5000/countries/' + inp.value;
-                    $.ajax({
-                        url: urlCountryCode,
-                        type: "GET",
-                        success: function (result) {
-                            // return result;
-                            var iso2code = result;
-                            console.log("2" + result);
-                            document.getElementById("myInput").name = result;
-                            const urlCities = 'http://localhost:5000/citiesN/' + inp.value;
-                            $.ajax({
-                                url: urlCities,
-                                type: "GET",
-                                success: function (result) {
-                                    //console.log("3"+result);
-                                    autocompleteCities(document.getElementById("cities"), result);
-                                },
-                                error: function (error) {
-                                    console.log(error)
-                                }
-                            })
-                        },
-                        error: function (error) {
-                            console.log(error)
-                        }
-                    })
+                    document.getElementById("fromcity").name = inp.value; /// set the name of cities text field with city name
+                    console.log(inp.value)
                     /*close the list of autocompleted values,
                     (or any other open lists of autocompleted values:*/
                     closeAllLists();
@@ -112,7 +85,7 @@ function autocompleteCountries(inp, arr) {
     function closeAllLists(elmnt) {
         /*close all autocomplete lists in the document,
         except the one passed as an argument:*/
-        var x = document.getElementsByClassName("autocomplete-items");
+        var x = document.getElementsByClassName("autocomplete-items-cities");
         for (var i = 0; i < x.length; i++) {
             if (elmnt != x[i] && elmnt != inp) {
                 x[i].parentNode.removeChild(x[i]);
@@ -123,5 +96,4 @@ function autocompleteCountries(inp, arr) {
     document.addEventListener("click", function (e) {
         closeAllLists(e.target);
     });
-    return iso2code;
 }

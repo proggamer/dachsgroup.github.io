@@ -233,7 +233,7 @@
 				<div class="col-md-6">
 
 					<div class="row">
-						<div class="col">
+						<div class="col" id="autocomplete">
 							<input type="text" class="form-control" id="fromcity" placeholder="City"
 								aria-label="First name" required="1" style="height:70px;">
 						</div>
@@ -865,6 +865,7 @@
 	<!----zar------------------------------------------------------------->
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	<script src="./js/autocomplete_cities.js"></script>
+	<script src="./js/autocomplete_cities2.js"></script>
 	<script src="./js/autocomplete_countries.js"></script>
 	<script>
 		var iso2code = '';
@@ -877,6 +878,19 @@
 				success: function (result) {
 					iso2code = autocompleteCountries(document.getElementById("myInput"), result);
 					console.log("iso" + iso2code);
+				},
+				error: function (error) {
+					console.log(error)
+				}
+			})
+
+			const urlCityForAu = 'http://localhost:5000/citiesN/Australia';
+			$.ajax({
+				url: urlCityForAu,
+				type: "GET",
+				success: function (result) {
+					autocompleteCities2(document.getElementById("fromcity"), result);
+					//console.log("iso" + iso2code);
 				},
 				error: function (error) {
 					console.log(error)
@@ -1098,13 +1112,14 @@
 
 			Email.send({
 				SecureToken: "a999fac9-d60b-4a5f-96a9-02afe8d068a2",
-				To: 'virtualreceptionassistant@gmail.com',
+				//To: 'virtualreceptionassistant@gmail.com',
+				To: email,
 				From: "dachsgroup@gmail.com",
 				Subject: "New message on Dachsgroup from " + name,
 				Body: Body
 			}).then(
 				message => {
-					//console.log (message);
+					console.log(message);
 					if (message == 'OK') {
 						$('#contact-form')[0].reset();
 						spinner.setAttribute('hidden', '');
