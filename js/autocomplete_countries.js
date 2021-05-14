@@ -43,7 +43,7 @@ function autocompleteCountries(inp, arr) {
                             var iso2code = result;
                             console.log("2" + result);
                             document.getElementById("myInput").name = result;
-                            const urlCities = 'https://countryapidach.herokuapp.com/citiesN/' + inp.value;
+                            const urlCities = 'https://countryapidach.herokuapp.com/cities/' + result;
                             $.ajax({
                                 url: urlCities,
                                 type: "GET",
