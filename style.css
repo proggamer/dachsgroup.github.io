@@ -401,20 +401,18 @@ display: block;}
 
 }
 
-#dachsdesign{font-weight:bold; font-size:55px;font-family: 'Lobster', cursive; margin-left:60px; margin-top:60px;}
 
 #largeformat{
-font-weight:bold; font-size:55px;font-family: 'Lobster', cursive; margin-left:180px; margin-bottom:-30px;}
+font-weight:bold; font-size:55px; margin-left:180px; margin-bottom:-30px;}
 
 @media screen and (max-width: 970px) {
  
   
   
-  #dachsdesign{font-weight:bold; font-size:45px;font-family: 'Lobster', cursive; margin-left:-10px;  margin-bottom:30px;}
   
 
   #largeformat{
-font-weight:bold; font-size:45px;font-family: 'Lobster', cursive; margin-left:180px; margin-bottom:-30px; margin-bottom:30px; margin-left:-10px;}
+font-weight:bold; font-size:45px; margin-left:180px; margin-bottom:-30px; margin-bottom:30px; margin-left:-10px;}
 
 
 }
