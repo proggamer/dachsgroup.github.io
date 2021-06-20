@@ -34,32 +34,71 @@ function autocompleteCountries(inp, arr) {
                     inp.value = this.getElementsByTagName("input")[0].value;
                     document.getElementById("cities").value = '';
                     console.log("1" + inp.value)
-                    const urlCountryCode = 'https://countryapidach.herokuapp.com/countries/' + inp.value;
-                    $.ajax({
-                        url: urlCountryCode,
-                        type: "GET",
-                        success: function (result) {
-                            // return result;
-                            var iso2code = result;
-                            console.log("2" + result);
-                            document.getElementById("myInput").name = result;
-                            const urlCities = 'https://countryapidach.herokuapp.com/cities/' + result;
-                            $.ajax({
-                                url: urlCities,
-                                type: "GET",
-                                success: function (result) {
-                                    //console.log("3"+result);
-                                    autocompleteCities(document.getElementById("cities"), result);
-                                },
-                                error: function (error) {
-                                    console.log(error)
+
+                    // const urlCountryCode = 'https://countryapidach.herokuapp.com/countries/' + inp.value;
+                    // $.ajax({
+                    //     url: urlCountryCode,
+                    //     type: "GET",
+                    //     success: function (result) {
+                    //         // return result;
+                    //         var iso2code = result;
+                    //         console.log("2" + result);
+                    //         document.getElementById("myInput").name = result;
+                    //         const urlCities = 'https://countryapidach.herokuapp.com/cities/' + result;
+                    //         $.ajax({
+                    //             url: urlCities,
+                    //             type: "GET",
+                    //             success: function (result) {
+                    //                // console.log("3" + result);
+                    //                 autocompleteCities(document.getElementById("cities"), result);
+                    //             },
+                    //             error: function (error) {
+                    //                 console.log(error)
+                    //             }
+                    //         })
+                    //     },
+                    //     error: function (error) {
+                    //         console.log(error)
+                    //     }
+                    // })
+
+                    var headers = new Headers();
+                    headers.append("X-CSCAPI-KEY", "SkJPZk94NWY1SFpXZ0pndktxN3dBY1F5WlZBdFNRbmtlSGVxbDJzZA==");
+
+                    var requestOptions = {
+                        method: 'GET',
+                        headers: headers,
+                        redirect: 'follow'
+                    };
+
+                    fetch("https://api.countrystatecity.in/v1/countries", requestOptions)
+                        .then(response => response.text())
+                        .then(result => {
+                            var theISO2;
+                            JSON.parse(result).forEach((item) => {
+                                if (inp.value === String(item.name)) {
+                                    theISO2 = item.iso2;
                                 }
-                            })
-                        },
-                        error: function (error) {
-                            console.log(error)
-                        }
-                    })
+                            });
+                            document.getElementById("myInput").name = theISO2;
+                            fetch("https://api.countrystatecity.in/v1/countries/" + theISO2 + "/cities", requestOptions)
+                                .then(response => response.text())
+                                .then(result => {
+                                    var citiesFromAPI = [];
+                                    JSON.parse(result).forEach((item) => {
+                                        citiesFromAPI.push(item.name);
+
+                                    });
+                                    autocompleteCities(document.getElementById("cities"), citiesFromAPI);
+                                })
+                                .catch(error => console.log('error', error));
+
+
+                        })
+                        .catch(error => console.log('error', error));
+
+
+
                     /*close the list of autocompleted values,
                     (or any other open lists of autocompleted values:*/
                     closeAllLists();

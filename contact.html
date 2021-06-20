@@ -880,31 +880,63 @@
             var iso2code = '';
             $(document).ready(function () {
 
-                const urlCountries = 'https://countryapidach.herokuapp.com/countries';
-                $.ajax({
-                    url: urlCountries,
-                    type: "GET",
-                    success: function (result) {
-                        iso2code = autocompleteCountries(document.getElementById("myInput"), result);
-                        console.log("iso" + iso2code);
-                    },
-                    error: function (error) {
-                        console.log(error)
-                    }
-                })
+                var headers = new Headers();
+                headers.append("X-CSCAPI-KEY", "SkJPZk94NWY1SFpXZ0pndktxN3dBY1F5WlZBdFNRbmtlSGVxbDJzZA==");
 
-                const urlCityForAu = 'https://countryapidach.herokuapp.com/cities/AU';
-                $.ajax({
-                    url: urlCityForAu,
-                    type: "GET",
-                    success: function (result) {
-                        autocompleteCities2(document.getElementById("fromcity"), result);
-                        //console.log("iso" + iso2code);
-                    },
-                    error: function (error) {
-                        console.log(error)
-                    }
+                var requestOptions = {
+                method: 'GET',
+                headers: headers,
+                redirect: 'follow'
+                };
+
+                fetch("https://api.countrystatecity.in/v1/countries", requestOptions)
+                .then( response => response.text())
+                .then(result => {
+                    let countriesFromApi = [];
+                    JSON.parse(result).forEach((item) => {
+                            countriesFromApi.push(item.name);
+                        });
+                        iso2code = autocompleteCountries(document.getElementById("myInput"), countriesFromApi);
                 })
+                .catch(error => console.log('error', error));
+
+                fetch("https://api.countrystatecity.in/v1/countries/AU/cities", requestOptions)
+                                .then(response => response.text())
+                                .then(result => {
+                                    var citiesFromAPI = [];
+                                    JSON.parse(result).forEach((item) => {
+                                        citiesFromAPI.push(item.name);
+
+                                    });
+                                    autocompleteCities2(document.getElementById("fromcity"), citiesFromAPI);
+                                })
+                                .catch(error => console.log('error', error));
+
+                // const urlCountries = 'https://countryapidach.herokuapp.com/countries';
+                // $.ajax({
+                //     url: urlCountries,
+                //     type: "GET",
+                //     success: function (result) {
+                //         //iso2code = autocompleteCountries(document.getElementById("myInput"), result);
+                //         //console.log("iso" + result);
+                //     },
+                //     error: function (error) {
+                //         console.log(error)
+                //     }
+                // })
+
+                // const urlCityForAu = 'https://countryapidach.herokuapp.com/cities/AU';
+                // $.ajax({
+                //     url: urlCityForAu,
+                //     type: "GET",
+                //     success: function (result) {
+                //         autocompleteCities2(document.getElementById("fromcity"), result);
+                //         //console.log("iso" + iso2code);
+                //     },
+                //     error: function (error) {
+                //         console.log(error)
+                //     }
+                // })
             })
 
         </script>
